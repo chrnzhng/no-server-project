@@ -8,7 +8,10 @@ const Main = (props) => {
     }
 
     return (
+      
       <div className="main-wrapper">
+        {/*<img src="http://unsplash.com/photos/BdQk6Qm3vAU/download?force=true" id="bg" alt="happy little clouds" />*/}
+        
           <h1 className="title">Current Air Quality</h1>
         <SearchBar className="search" userInput={props.userInput} handleInputChange={props.userInputFunction}/>
         <ul>
@@ -17,6 +20,7 @@ const Main = (props) => {
           <li><h3>Last Update: { props.resultsObject.datetime }</h3></li>
           {/*<li>{ props.resultsObject.pollutants }</li>*/}
           <li><h3>AQI Description: { props.resultsObject.breezometer_description }</h3></li>
+          <li><h3>Dominant Pollutant:</h3></li>
         </ul>
       </div>
     )
