@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+
 import Main from './components/Main/Main';
-import SearchBar from './components/SearchBar/SearchBar';
+
 import axios from 'axios';
 import apiKey from './apiKey';
 // import GetCurrentAQI from './components/GetCurrentAQI/GetCurrentAQI';
@@ -14,19 +14,31 @@ class App extends Component {
 
     this.state = {
       results: {},
-      userInput: 'hello'
+      newResults: {},
+      userInput: '',
+      breezometer_aqi: false,
+
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
-    const promise = axios.get(`https://api.breezometer.com/baqi/?lat=40.7324296&lon=-73.9977264&key=${apiKey}&fields=breezometer_aqi,random_recommendations,datetime,pollutants,breezometer_description`)
+      axios.get(`https://api.breezometer.com/baqi/?lat=40.7324296&lon=-73.9977264&key=${apiKey}&fields=breezometer_aqi,random_recommendations,datetime,pollutants,breezometer_description`)
       .then(res => res.data)    
         .then((finalResult) => {  
           this.setState ({ results: finalResult } );
           console.log("results", this.state.results)
         });
+  }
+
+  onSubmit() {
+    // wil use this.state.userInput as part of the API request url
+    // axios.get
+
+    // this.setState({
+    //   newResults: response
+    // })
   }
 
   handleInputChange(e) {
