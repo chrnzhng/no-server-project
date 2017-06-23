@@ -1,6 +1,10 @@
 import React from 'react';
+
 import SearchBar from '../SearchBar/SearchBar';
+import AqiColors from './AqiColors/AqiColors';
+
 import './Main.css';
+
 
 const Main = (props) => {
     if (!props.resultsObject) {
@@ -13,15 +17,22 @@ const Main = (props) => {
         
         
           <h1 className="title">Current Air Quality</h1>
-        <SearchBar className="search" userInput={props.userInput} handleInputChange={props.userInputFunction}/>
+        <SearchBar className="search" userInput={props.userInput} handleInputChange={props.userInputFunction} makeRequest={props.onButtonClick}/>
         <ul>
-          <li className="color-swap-AQI"><h3>AQI: { props.resultsObject.breezometer_aqi }</h3></li>
+
+          {/*<li className="color-swap-AQI">
+            <h3>AQI: { props.resultsObject.breezometer_aqi }</h3>
+          </li>*/}
+
+          <AqiColors aqi={props.resultsObject.breezometer_aqi}  color="green"/>
+
+
           {/*<li>{ props.resultsObject.random_recommendations }</li>*/}
           <li><h3>Last Update: { props.resultsObject.datetime }</h3></li>
           {/*<li>{ props.resultsObject.pollutants }</li>*/}
           <li><h3>AQI Description: { props.resultsObject.breezometer_description }</h3></li>
-          <li><h3>Dominant Pollutant:</h3></li>
-        </ul>
+          {/*<li><h3>Dominant Pollutant:</h3></li>*/}
+        </ul> 
       </div>
     )
 };

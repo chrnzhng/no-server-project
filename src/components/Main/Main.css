@@ -6,15 +6,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("http://unsplash.com/photos/RmNAdoJNFJs/download?force=true");
-    background-repeat: no-repeat;
+   
+}
     
   
-}
-
 .title {
     margin: 0;
-    
+    color: #101621
 }
 
 .search {
