@@ -10,15 +10,7 @@ import apiKey from './apiKey';
 import './App.css';
 
 const BASE_URL = `https://api.breezometer.com/baqi/a?`;
-
-  /*POST`http://foo.org/bar?a=${a}&b=${b}
-     Content-Type: application/json
-     X-Credentials: ${credentials}
-
-     { "foo": ${foo},
-       "bar": ${bar}}
-     `*/
-
+const IP_URL = `http://ip-api.com/json`;
 class App extends Component {
    constructor(props) {
     super(props);
@@ -26,7 +18,7 @@ class App extends Component {
     this.state = {
       results: {},
       newResults: {},
-      currentIP: {},
+
       userInput: '',
       // breezometer_aqi: false,
       // random_recommendations: false,
@@ -34,13 +26,15 @@ class App extends Component {
       // pollutants: false,
       // breezometer_description: false,
       lat: {},
-      lon: {}
-
+      lon: {},
+      currentLat: {},
+      currentLon: {}
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.buildURL = this.buildURL.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    // this.currentLocationAQI = this.currentLocationAQI.bind(this);
     this.makeRequest = this.makeRequest.bind(this);
   }
 
@@ -49,15 +43,6 @@ class App extends Component {
         https://api.breezometer.com/baqi/a?lt={latitude}&lon={longitude}&key=${apiKey}
         https://api.breezometer.com/baqi/?lat=40.2181&lon=-111.6133&key=${apiKey}&fields=breezometer_aqi,random_recommendations,datetime,pollutants,breezometer_description
         */
-  // componentDidMount() {
-  //     axios.get(`https://api.breezometer.com/baqi/?lat=40.2181&lon=-111.6133&key=${apiKey}&fields=breezometer_aqi,random_recommendations,datetime,pollutants,breezometer_description`)
-  //     .then(res => res.data)    
-  //       .then((Result) => {  
-  //         this.setState ({ results: Result } );
-  //         console.log("results", this.state.results)
-  //       });
-  // }
-
 
   handleInputChange(e) {
     this.setState({   
@@ -68,16 +53,21 @@ class App extends Component {
   componentDidMount(){
     axios.get(`http://ip-api.com/json`).then(res => res.data)    
         .then((Result) => {  
-          this.setState ({ currentIP: Result } );
-          console.log("res", this.state.currentIP)
+          this.setState ( { currentLat: Result.lat} );
+          console.log("Result", this.state.currentLat)
+          this.setState ( { currentLon: Result.lon} );
+          console.log("Result", this.state.currentLon)
         });
  }
 
- currentLocationAQI(){
-    const result = this.componentDidMount()
+//  currentLocationAQI(){
+//     const currentRes = this.componentDidMount(this.state.userInput);
+//     if (this.state.userInput === "")
+//     { }
     
- }
+//  }
 
+//This is what's actually making the get request from Breezometer
   makeRequest() {
     const result = this.buildURL(this.state.userInput);
 
@@ -88,7 +78,7 @@ class App extends Component {
         });
   }
 
-
+//This is a helper function that will format the userInput into the correct format for URL request
   buildURL(userInput) {
     var formatResult = this.state.userInput.split(" ")
     const lat = formatResult[0];
@@ -98,18 +88,16 @@ class App extends Component {
           //https://api.breezometer.com/baqi/a?lt={latitude}&lon={longitude}&key=${apiKey}
           return BASE_URL + `lt=${lat}` + `&lon=${lon}` + `&key=${apiKey}`;
           // console.log(urlCheck);
-        } else {
-          return alert('Enter valid format ex. [40.2181 -111.6133]')
+        } 
+        else if (this.state.userInput === "") {
+          return BASE_URL + `lt=${this.state.currentLat}` + `&lon=${this.state.currentLon}` + `&key=${apiKey}`;
+        }
+        else {
+          return alert('Enter valid format e.g. [40.2181 -111.6133]')
         }
       }
     }
   }
-
-
-  
-
-
-
   render() {
     return (
       
