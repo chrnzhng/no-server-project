@@ -9,7 +9,7 @@ const SearchBar = (props) => {
       </div>
           
       <div className="search">
-        <input className="input" placeholder="Current Location, Or: Lon, Lat" onChange={(e) => props.handleInputChange(e)} />
+        <input className="input" placeholder="40.2181, -111.6133" onChange={(e) => props.handleInputChange(e)} />
         <button className="button">Search</button>
       </div>
     </div>

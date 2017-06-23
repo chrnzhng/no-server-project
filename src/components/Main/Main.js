@@ -10,7 +10,7 @@ const Main = (props) => {
     return (
       
       <div className="main-wrapper">
-        {/*<img src="http://unsplash.com/photos/BdQk6Qm3vAU/download?force=true" id="bg" alt="happy little clouds" />*/}
+        
         
           <h1 className="title">Current Air Quality</h1>
         <SearchBar className="search" userInput={props.userInput} handleInputChange={props.userInputFunction}/>

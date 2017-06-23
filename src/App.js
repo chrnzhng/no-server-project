@@ -9,6 +9,8 @@ import apiKey from './apiKey';
 
 import './App.css';
 
+const BASE_URL = `https://api.breezometer.com/baqi/?`
+
 class App extends Component {
    constructor(props) {
     super(props);
@@ -18,18 +20,24 @@ class App extends Component {
       newResults: {},
       userInput: '',
       breezometer_aqi: false,
+      random_recommendations: false,
+      datetime: false,
+      pollutants: false,
+      breezometer_description: false
 
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.buildURL = this.buildURL.bind(this);
   }
 
+/*
+        This is the formatting needed for the URL request
+        https://api.breezometer.com/baqi/?lat={latitude}&lon={longitude}&key=${apiKey}
+        */
   // componentDidMount() {
   //     axios.get(`https://api.breezometer.com/baqi/?lat=40.7324296&lon=-73.9977264&key=${apiKey}&fields=breezometer_aqi,random_recommendations,datetime,pollutants,breezometer_description`)
-        /*
-        This is the formatting needed for the URL request
-        https://api.breezometer.com/baqi/?lat={latitude}&lon={longitude}&key=YOUR_API_KEY
-        */
   //     .then(res => res.data)    
   //       .then((aqiResult) => {  
   //         this.setState ({ results: aqiResult } );
@@ -37,20 +45,33 @@ class App extends Component {
   //       });
   // }
 
-  onSubmit() {
-    // wil use this.state.userInput as part of the API request url
-    // axios.get
+  buildURL(userInput) {
+    var formatResult = userInput.split(",")
+    
+    {
+    if (!NaN(userInput)) {
+        return BASE_URL + `lat=${userInput}` + `&lon=${userInput}` + `&key=${apiKey}`;
+    }
+    return 'Enter valid format'
+}
+  }
 
-    // this.setState({
+  onSubmit(e) {
+    // will use this.state.userInput as part of the API request url
+    
+
+   
+  }
+    // And Another One
+   // this.setState({
     //   newResults: response
     // })
-    axios.get(`http://ip-api.com/json`)
-      .then(res => res.data)    
-        .then((geoLo) => {  
-          this.setState ({ newResults: geoLo } );
-          console.log("geoLoResults", this.state.newResults)
-        }); 
-  }
+    // axios.get(`http://ip-api.com/json`)
+    //   .then(res => res.data)    
+    //     .then((geoLo) => {  
+    //       this.setState ({ newResults: geoLo } );
+    //       console.log("geoLoResults", this.state.newResults)
+    //     }); 
 
   handleInputChange(e) {
     this.setState({
@@ -58,6 +79,12 @@ class App extends Component {
     })
   }
 
+  // aqiByColor() {
+  //   if (breezometer_aqi >= 0 || breezometer_aqi <= 50) {
+  //     return
+  //   }
+  //   if (breezometer_aqi > 50 )
+  // }
 
 
   render() {
@@ -66,7 +93,7 @@ class App extends Component {
       <div className="main-wrapper">
  
         <Header />
-        <Main resultsObject={this.state.results} userInput={this.state.userInput} userInputFunction={this.handleInputChange}/>
+        <Main resultsObject={this.state.results} userInput={this.state.userInput} userInputFunction={this.handleInputChange} enterLocation={this.buildURL}/>
         <Footer />
       </div>
     );
