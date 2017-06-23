@@ -32,10 +32,11 @@ class App extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.makeRequest = this.makeRequest.bind(this);
     this.buildURL = this.buildURL.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.defaultLocation = this.defaultLocation.bind(this);
-    this.makeRequest = this.makeRequest.bind(this);
+    
   }
 
 /*
@@ -45,20 +46,24 @@ class App extends Component {
         */
 
   handleInputChange(e) {
-    this.setState({   
+    this.setState({
       userInput: e.target.value
     })
   }
 
-  componentDidMount(){
-    axios.get(`http://ip-api.com/json`).then(res => res.data)    
-        .then((Result) => {  
-          this.setState ( { currentLat: Result.lat} );
-          console.log("Result", this.state.currentLat)
-          this.setState ( { currentLon: Result.lon} );
-          console.log("Result", this.state.currentLon)
+  componentDidMount() {
+    axios.get(`http://ip-api.com/json`).then(res => res.data)
+      .then((Result) => {
+        this.setState({
+          currentLat: Result.lat
         });
- }
+        // console.log("Result", this.state.currentLat)
+        this.setState({
+          currentLon: Result.lon
+        });
+        // console.log("Result", this.state.currentLon)
+      });
+  }
 
 //This is what's actually making the get request from Breezometer
 makeRequest() {
@@ -66,44 +71,43 @@ makeRequest() {
   const result2 = this.defaultLocation(this.state.userInput);
 
   if (this.state.userInput.length >= 1) {
-    axios.get(`${result}`).then(res => res.data)
+    return axios.get(`${result}`).then(res => res.data)
       .then((Result) => {
         this.setState({
           results: Result
         });
       });
-    }
-      else if (this.state.userInput.length === 0) {
-        return this.makeRequest(result2)};
-      
-
-  }
-
-
+  } else {
+    return axios.get(`${result2}`).then(res => res.data)
+      .then((Result) => {
+        this.setState({
+          results: Result
+        });
+      });
+  };
+}
 //This is a helper function that will format the userInput into the correct format for URL request
   buildURL(userInput) {
     var formatResult = this.state.userInput.split(" ")
     const lat = formatResult[0];
-    const lon = formatResult[1]; 
-      for (var i = 0; i < formatResult.length; i++) {
-        if (!isNaN(formatResult[i])) {
-          //https://api.breezometer.com/baqi/a?lt={latitude}&lon={longitude}&key=${apiKey}
-          return BASE_URL + `lat=${lat}` + `&lon=${lon}` + `&key=${apiKey}`;
-          // console.log(urlCheck);
-        }
-        else {
-          return alert('Enter valid format e.g. [40.2181 -111.6133]')
-        }
+    const lon = formatResult[1];
+    for (var i = 0; i < formatResult.length; i++) {
+      if (!isNaN(formatResult[i])) {
+        //https://api.breezometer.com/baqi/a?lt={latitude}&lon={longitude}&key=${apiKey}
+        return BASE_URL + `lat=${lat}` + `&lon=${lon}` + `&key=${apiKey}`;
+        // console.log(urlCheck);
+      } else {
+        return alert('Enter valid format e.g. [40.2181 -111.6133]')
       }
-    
+    }
+
   }
-  
 
   defaultLocation(userInput) {
     if (this.state.userInput.length === 0) {
-     var test = BASE_URL + `lat=${this.state.currentLat}` + `&lon=${this.state.currentLon}` + `&key=${apiKey}`;
-      console.log(test);
-      }
+      return BASE_URL + `lat=${this.state.currentLat}` + `&lon=${this.state.currentLon}` + `&key=${apiKey}`;
+
+    }
   }
 
  
