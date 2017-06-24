@@ -18,24 +18,21 @@ class App extends Component {
     this.state = {
       results: {},
       newResults: {},
-
       userInput: '',
-      // breezometer_aqi: false,
-      // random_recommendations: false,
-      // datetime: false,
-      // pollutants: false,
-      // breezometer_description: false,
       lat: {},
       lon: {},
       currentLat: {},
-      currentLon: {}
-    };
+      currentLon: {},
+      dominantPollutant: {},
+      dPInfo: {},
+      };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.makeRequest = this.makeRequest.bind(this);
     this.buildURL = this.buildURL.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.defaultLocation = this.defaultLocation.bind(this);
+  
     
   }
 
@@ -76,6 +73,7 @@ makeRequest() {
         this.setState({
           results: Result
         });
+       
       });
   } else {
     return axios.get(`${result2}`).then(res => res.data)
@@ -103,6 +101,7 @@ makeRequest() {
 
   }
 
+
   defaultLocation(userInput) {
     if (this.state.userInput.length === 0) {
       return BASE_URL + `lat=${this.state.currentLat}` + `&lon=${this.state.currentLon}` + `&key=${apiKey}`;
@@ -110,6 +109,7 @@ makeRequest() {
     }
   }
 
+  
  
 
   render() {

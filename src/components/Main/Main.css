@@ -12,10 +12,28 @@
   
 .title {
     margin: 0;
-    color: #101621
+    color: #496a90
 }
 
 .search {
     padding-top: 10px;
 }
 
+#mono-color {
+    color: #496a90
+}
+/*.color-AQI {
+    color: #79bc6a;
+}
+
+.color-Update {
+    color: #bbcf4c;
+}
+
+.color-Description {
+    color: #ffcf00;
+}
+
+.color-Pollutant {
+    color: #ff9a00;
+}*/
