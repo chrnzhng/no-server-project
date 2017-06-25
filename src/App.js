@@ -22,9 +22,7 @@ class App extends Component {
       lat: {},
       lon: {},
       currentLat: {},
-      currentLon: {},
-      dominantPollutant: {},
-      dPInfo: {},
+      currentLon: {},     
       };
 
     this.handleInputChange = this.handleInputChange.bind(this);

@@ -16,11 +16,12 @@
 }
 
 .search {
-    padding-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
 
-#mono-color {
-    color: #496a90
+.list{
+    color: #496a90;
 }
 /*.color-AQI {
     color: #79bc6a;

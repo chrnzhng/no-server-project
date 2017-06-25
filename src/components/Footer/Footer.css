@@ -1,12 +1,12 @@
-.footerBar {
+/*.footerBar {
     display: flex;
     /*padding-right: 15px;*/
     /*width: 100vw;*/
     justify-content: space-between;
     
-}
+}*/
 
-.bottom-image {
+/*.bottom-image {
     margin-top: 15px;
     
    
@@ -19,7 +19,7 @@
 img:hover {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
-}
+}*/
 
 .bottomText {
     margin-right: 10px;

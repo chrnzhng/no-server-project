@@ -8,7 +8,7 @@ const SearchBar = (props) => {
   return (
     <div>
       <div>
-        {props.userInput}
+        {/*{props.userInput}*/}
       </div>
           
       <div className="search">
