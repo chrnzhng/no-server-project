@@ -93,7 +93,7 @@ makeRequest() {
         return BASE_URL + `lat=${lat}` + `&lon=${lon}` + `&key=${apiKey}`;
         // console.log(urlCheck);
       } else {
-        return alert('Enter valid format e.g. [40.2181 -111.6133]')
+        return alert('Not a valid format. Hint: Try just clicking search, to check your current location')
       }
     }
 
