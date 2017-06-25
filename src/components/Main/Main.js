@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import SearchBar from '../SearchBar/SearchBar';
-import AqiColors from './AqiColors/AqiColors';
+// import AqiColors from './AqiColors/AqiColors';
 
 import './Main.css';
 
