@@ -5,7 +5,9 @@
     justify-content: space-between;
     
 }
-
+.link-top {
+    padding-top: 8%;
+}
 .image {
     margin-top: 15px;
     

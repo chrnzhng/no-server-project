@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import route from './route';
 import Main from './components/Main/Main';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import axios from 'axios';
 import apiKey from './apiKey';
-// import aipKey2 from './apiKey2';
+
 
 
 import './App.css';
@@ -122,7 +122,7 @@ makeRequest() {
       <div className="main-wrapper">
  
         <Header />
-        <Main resultsObject={this.state.results} userInput={this.state.userInput} userInputFunction={this.handleInputChange} onButtonClick={this.makeRequest}/>
+             <Main resultsObject={this.state.results} userInput={this.state.userInput} userInputFunction={this.handleInputChange} onButtonClick={this.makeRequest}/>
         <Footer />
       </div>
     );

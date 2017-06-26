@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import SearchBar from '../SearchBar/SearchBar';
+import Video from '../Video/Video';
 // import AqiColors from './AqiColors/AqiColors';
 
 import './Main.css';
