@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://ip-api.com/json`).then(res => res.data)
+    axios.get(`http://ip-api.com/json`).then(res => res.data)
       .then((Result) => {
         this.setState({
           currentLat: Result.lat
