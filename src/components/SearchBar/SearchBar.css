@@ -8,8 +8,24 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius: 4px;    
 }
+    .btn:hover {
+    box-shadow: 0px 0px 150px #496a90;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
+    }
+   
+
+
+
 
 .input {
     font-size: 16px;

@@ -19,5 +19,15 @@ html {
  
 }
 
+a { color: whitesmoke } /* Globally */
+
+/* Each state */
+
+a:visited { text-decoration: none; color: #496a90; }
+a:hover { text-decoration: none; color:whitesmoke; }
+/*a:focus { text-decoration: none; color:yellow; }*/
+a:hover, a:active { text-decoration: none; color: whitesmoke; }
+
+
 /*http://unsplash.com/photos/FIKD9t5_5zQ/download?force=true
 http://unsplash.com/photos/OlZ1nWLEEgM/download?force=true*/

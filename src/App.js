@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import axios from 'axios';
 import apiKey from './apiKey';
+// import aipKey2 from './apiKey2';
 
 
 import './App.css';
@@ -22,7 +23,8 @@ class App extends Component {
       lat: {},
       lon: {},
       currentLat: {},
-      currentLon: {},     
+      currentLon: {}, 
+      giphObj: {},    
       };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -82,6 +84,10 @@ makeRequest() {
       });
   };
 }
+
+// gifRequest() {
+//   axios.get(`http://api.giphy.com/v1/gifs/search?q=happy+birthday&api_key=${apiKey2}&limit=1`)
+// }
 //This is a helper function that will format the userInput into the correct format for URL request
   buildURL(userInput) {
     var formatResult = this.state.userInput.split(" ")
@@ -93,7 +99,7 @@ makeRequest() {
         return BASE_URL + `lat=${lat}` + `&lon=${lon}` + `&key=${apiKey}`;
         // console.log(urlCheck);
       } else {
-        return alert('Not a valid format. Hint: Try just clicking search!')
+        return alert('Not a valid format. Hint: Try just clicking Search!');
       }
     }
 
